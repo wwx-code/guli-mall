@@ -12,3 +12,4 @@ buildNumber.properties
 
 **/target/
 .idea
+/gulimall-product/src/main/resources/src/views/modules/product/

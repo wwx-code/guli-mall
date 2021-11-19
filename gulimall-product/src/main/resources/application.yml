@@ -1,0 +1,11 @@
+# database Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.150.133:3306/gulimall-pms?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+
+mybatis-plus:
+  # 告知mybatis-plus映射配置路径
+  mapper-locations: classpath:/mapper/**/*.xml

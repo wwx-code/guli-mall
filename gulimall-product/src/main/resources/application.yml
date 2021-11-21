@@ -9,3 +9,6 @@ spring:
 mybatis-plus:
   # 告知mybatis-plus映射配置路径
   mapper-locations: classpath:/mapper/**/*.xml
+
+server:
+  port: 10000

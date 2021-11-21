@@ -22,7 +22,7 @@ import com.wwxyh.common.utils.R;
  *
  * @author wwx
  * @email 
- * @date 2021-11-16 23:33:07
+ * @date 2021-11-20 23:18:56
  */
 @RestController
 @RequestMapping("product/skuimages")
@@ -34,6 +34,7 @@ public class SkuImagesController {
      * 列表
      */
     @RequestMapping("/list")
+    //@RequiresPermissions("product:skuimages:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = skuImagesService.queryPage(params);
 
@@ -45,6 +46,7 @@ public class SkuImagesController {
      * 信息
      */
     @RequestMapping("/info/{id}")
+    //@RequiresPermissions("product:skuimages:info")
     public R info(@PathVariable("id") Long id){
 		SkuImagesEntity skuImages = skuImagesService.getById(id);
 
@@ -55,6 +57,7 @@ public class SkuImagesController {
      * 保存
      */
     @RequestMapping("/save")
+    //@RequiresPermissions("product:skuimages:save")
     public R save(@RequestBody SkuImagesEntity skuImages){
 		skuImagesService.save(skuImages);
 
@@ -65,6 +68,7 @@ public class SkuImagesController {
      * 修改
      */
     @RequestMapping("/update")
+    //@RequiresPermissions("product:skuimages:update")
     public R update(@RequestBody SkuImagesEntity skuImages){
 		skuImagesService.updateById(skuImages);
 
@@ -75,6 +79,7 @@ public class SkuImagesController {
      * 删除
      */
     @RequestMapping("/delete")
+    //@RequiresPermissions("product:skuimages:delete")
     public R delete(@RequestBody Long[] ids){
 		skuImagesService.removeByIds(Arrays.asList(ids));
 

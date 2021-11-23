@@ -4,11 +4,9 @@ import java.util.Arrays;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.*;
 
 import com.wwxyh.gulimall.coupon.entity.CouponEntity;
 import com.wwxyh.gulimall.coupon.service.CouponService;
@@ -24,11 +22,27 @@ import com.wwxyh.common.utils.R;
  * @email 
  * @date 2021-11-20 23:24:13
  */
+@RefreshScope
 @RestController
 @RequestMapping("coupon/coupon")
 public class CouponController {
     @Autowired
     private CouponService couponService;
+
+    @Value("${wieweixiong.name}")
+    private String username;
+
+    @Value("${wieweixiong.age}")
+    private Integer age;
+
+    @GetMapping("/test")
+    public R test() {
+//        CouponEntity couponEntity = new CouponEntity();
+//        couponEntity.setId(1L);
+//        couponEntity.setCouponName("测试优惠券");
+
+        return R.ok().put("name", username).put("age", age);
+    }
 
     /**
      * 列表

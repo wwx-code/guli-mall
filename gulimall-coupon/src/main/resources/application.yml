@@ -5,6 +5,12 @@ spring:
     url: jdbc:mysql://192.168.150.133:3306/gulimall-sms?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: root
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimall-coupon
 
 mybatis-plus:
   # 告知mybatis-plus映射配置路径

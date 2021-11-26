@@ -25,7 +25,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="gulimall-common" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>

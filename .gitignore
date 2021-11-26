@@ -13,3 +13,4 @@ buildNumber.properties
 **/target/
 .idea
 **/src/main/resources/src/views/modules/
+/gulimall-gateway/.mvn/wrapper/

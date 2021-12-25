@@ -22,7 +22,7 @@ import com.wwxyh.common.utils.R;
  * 商品三级分类
  *
  * @author wwx
- * @email 
+ * @email
  * @date 2021-11-20 23:18:56
  */
 @RestController
@@ -62,6 +62,15 @@ public class CategoryController {
     public R save(@RequestBody CategoryEntity category){
 		categoryService.save(category);
 
+        return R.ok();
+    }
+
+    /**
+     * 批量修改
+     */
+    @RequestMapping("/update/sort")
+    public R updateSort(@RequestBody CategoryEntity[] category){
+        categoryService.updateBatchById(Arrays.asList(category));
         return R.ok();
     }
 

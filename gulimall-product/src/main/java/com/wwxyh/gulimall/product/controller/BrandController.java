@@ -21,7 +21,7 @@ import com.wwxyh.common.utils.R;
  * 品牌
  *
  * @author wwx
- * @email 
+ * @email
  * @date 2021-11-20 23:18:56
  */
 @RestController
@@ -71,6 +71,16 @@ public class BrandController {
     //@RequiresPermissions("product:brand:update")
     public R update(@RequestBody BrandEntity brand){
 		brandService.updateById(brand);
+
+        return R.ok();
+    }
+
+    /**
+     * 修改状态
+     */
+    @RequestMapping("/update/status")
+    public R updateStatus(@RequestBody BrandEntity brand){
+        brandService.updateById(brand);
 
         return R.ok();
     }

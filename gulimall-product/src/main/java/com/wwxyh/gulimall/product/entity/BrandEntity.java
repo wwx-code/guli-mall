@@ -27,14 +27,14 @@ public class BrandEntity implements Serializable {
 	 * 品牌id
 	 */
 	@TableId
-	@Null(message = "新增品牌不能指定id", groups = {AddGroup.class})
-	@NotNull(message = "更新品牌必须指定id", groups = {UpdateGroup.class})
+	@Null(message = "新增品牌不能指定id")
+	@NotNull(message = "更新品牌必须指定id")
 	private Long brandId;
 
 	/**
 	 * 品牌名
 	 */
-	@NotBlank(message = "品牌名不能为空", groups = {AddGroup.class, UpdateGroup.class})
+	@NotBlank(message = "品牌名不能为空")
 	private String name;
 
 	/**

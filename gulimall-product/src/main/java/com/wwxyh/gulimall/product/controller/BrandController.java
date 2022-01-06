@@ -33,7 +33,7 @@ public class BrandController {
     private BrandService brandService;
 
     /**
-     * 列表
+     * 查询品牌列表
      */
     @RequestMapping("/list")
     //@RequiresPermissions("product:brand:list")
@@ -45,7 +45,7 @@ public class BrandController {
 
 
     /**
-     * 信息
+     * 查询品牌信息
      */
     @RequestMapping("/info/{brandId}")
     //@RequiresPermissions("product:brand:info")
@@ -56,7 +56,7 @@ public class BrandController {
     }
 
     /**
-     * 保存
+     * 品牌信息保存
      */
     @RequestMapping("/save")
     //@RequiresPermissions("product:brand:save")
@@ -72,7 +72,7 @@ public class BrandController {
     @RequestMapping("/update")
     //@RequiresPermissions("product:brand:update")
     public R update(@RequestBody BrandEntity brand){
-		brandService.updateById(brand);
+        brandService.updateDetail(brand);
 
         return R.ok();
     }

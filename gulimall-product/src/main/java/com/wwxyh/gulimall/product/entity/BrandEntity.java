@@ -27,8 +27,6 @@ public class BrandEntity implements Serializable {
 	 * 品牌id
 	 */
 	@TableId
-	@Null(message = "新增品牌不能指定id")
-	@NotNull(message = "更新品牌必须指定id")
 	private Long brandId;
 
 	/**

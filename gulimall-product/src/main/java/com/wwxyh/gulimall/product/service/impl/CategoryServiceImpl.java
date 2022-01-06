@@ -1,5 +1,6 @@
 package com.wwxyh.gulimall.product.service.impl;
 
+import com.wwxyh.gulimall.product.service.CategoryBrandRelationService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,10 +18,16 @@ import com.wwxyh.common.utils.Query;
 import com.wwxyh.gulimall.product.dao.CategoryDao;
 import com.wwxyh.gulimall.product.entity.CategoryEntity;
 import com.wwxyh.gulimall.product.service.CategoryService;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Resource
+    private CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -80,6 +87,23 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         Collections.reverse(parentPath);
 
         return (Long[]) parentPath.toArray(new Long[parentPath.size()]);
+    }
+
+    /**
+     * 级联更新所有关联的数据
+     *
+     * @CacheEvict:失效模式
+     * @CachePut:双写模式，需要有返回值
+     * 1、同时进行多种缓存操作：@Caching
+     * 2、指定删除某个分区下的所有数据 @CacheEvict(value = "category",allEntries = true)
+     * 3、存储同一类型的数据，都可以指定为同一分区
+     * @param category
+     */
+    @Transactional
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        this.baseMapper.updateById(category);
+        categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
     }
 
     private List<Long> findParentPath(Long catelogId, List<Long> paths) {

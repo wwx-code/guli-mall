@@ -9,6 +9,7 @@ import com.wwxyh.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import com.wwxyh.gulimall.product.entity.AttrGroupEntity;
 import com.wwxyh.gulimall.product.entity.CategoryEntity;
 import com.wwxyh.gulimall.product.service.CategoryService;
+import com.wwxyh.gulimall.product.vo.AttrGroupRelationVo;
 import com.wwxyh.gulimall.product.vo.AttrRespVo;
 import com.wwxyh.gulimall.product.vo.AttrVo;
 import org.apache.commons.lang.StringUtils;
@@ -16,6 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -223,6 +225,17 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
         List<AttrEntity> attrEntityList = this.baseMapper.selectBatchIds(attrIds);
 
         return attrEntityList;
+    }
+
+    @Override
+    public void deleteRelation(AttrGroupRelationVo[] vos) {
+        List<AttrAttrgroupRelationEntity> entities = Arrays.asList(vos).stream().map((item) -> {
+            AttrAttrgroupRelationEntity relationEntity = new AttrAttrgroupRelationEntity();
+            BeanUtils.copyProperties(item, relationEntity);
+            return relationEntity;
+        }).collect(Collectors.toList());
+
+        relationDao.deleteBatchRelation(entities);
     }
 
 }

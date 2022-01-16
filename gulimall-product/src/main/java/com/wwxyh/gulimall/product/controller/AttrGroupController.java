@@ -7,6 +7,7 @@ import java.util.Map;
 import com.wwxyh.gulimall.product.entity.AttrEntity;
 import com.wwxyh.gulimall.product.service.AttrService;
 import com.wwxyh.gulimall.product.service.CategoryService;
+import com.wwxyh.gulimall.product.vo.AttrGroupRelationVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,19 @@ public class AttrGroupController {
         List<AttrEntity> entities = attrService.getRelationAttr(attrgroupId);
 
         return R.ok().put("data",entities);
+    }
+
+    /**
+     * 根据id删除属性关联关系
+     * @param vos
+     * @return
+     */
+    @PostMapping(value = "/attr/relation/delete")
+    public R deleteRelation(@RequestBody AttrGroupRelationVo[] vos) {
+
+        attrService.deleteRelation(vos);
+
+        return R.ok();
     }
 
     /**

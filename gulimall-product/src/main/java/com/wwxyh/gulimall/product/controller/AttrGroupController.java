@@ -1,10 +1,12 @@
 package com.wwxyh.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import com.wwxyh.gulimall.product.entity.AttrEntity;
+import com.wwxyh.gulimall.product.service.AttrAttrgroupRelationService;
 import com.wwxyh.gulimall.product.service.AttrService;
 import com.wwxyh.gulimall.product.service.CategoryService;
 import com.wwxyh.gulimall.product.vo.AttrGroupRelationVo;
@@ -36,6 +38,24 @@ public class AttrGroupController {
 
     @Autowired
     private AttrService attrService;
+
+    @Autowired
+    private AttrAttrgroupRelationService attrAttrgroupRelationService;
+
+    /**
+     * 批量添加属性与分组关联关系
+     * @param vos
+     * @return
+     */
+    ///product/attrgroup/attr/relation
+    @PostMapping(value = "/attr/relation")
+    public R addRelation(@RequestBody List<AttrGroupRelationVo> vos) {
+
+        attrAttrgroupRelationService.saveBatch(vos);
+
+        return R.ok();
+
+    }
 
     /**
      * 获取属性分组有关联的其他属性

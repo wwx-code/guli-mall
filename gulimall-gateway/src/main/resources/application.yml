@@ -17,6 +17,22 @@ spring:
             # 截断路由，将/api/thirdparty截断
             - RewritePath=/api/thirdparty/(?<segment>/?.*), /$\{segment}
 
+        - id: member_route
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            # 截断路由，将/api/member截断
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
+        - id: ware_route
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            # 截断路由，将/api/ware截断
+            - RewritePath=/api/(?<segment>/?.*), /$\{segment}
+
         - id: admin_route
           uri: lb://renren-fast
           predicates:

@@ -8,9 +8,14 @@
 
 package com.wwxyh.common.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+import com.wwxyh.common.to.SkuHasStockVo;
 import org.apache.http.HttpStatus;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -65,5 +70,13 @@ public class R extends HashMap<String, Object> {
 	public Integer getCode() {
 
 		return (Integer) this.get("code");
+	}
+
+	//利用fastjson进行反序列化
+	public <T> T getData(TypeReference<T> typeReference) {
+		Object data = get("data");	//默认是map
+		String jsonString = JSON.toJSONString(data);
+		T t = JSON.parseObject(jsonString, typeReference);
+		return t;
 	}
 }
